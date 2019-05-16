@@ -19,8 +19,8 @@
 
   <!-- CSS
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-  <link rel="stylesheet" href="{{ url_for('static', filename='normalize.css') }}">
-  <link rel="stylesheet" href="{{ url_for('static', filename='skeleton.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static',filename='normalize.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static',filename='skeleton.css') }}">
 
   <!-- Favicon
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
@@ -71,22 +71,16 @@
               </tr>
             </thead>
             <tbody>
+              {% for user in users %}
               <tr>
-                <td>User1</td>
-                <td>1000</td>
-                <td>0</td>
-                <td>May 16, 2019</td>
+                <td>{{ user.name }}</td>
+                <td>{{ user.commentKarma }}</td>
+                <td>{{ user.linkKarma }}</td>
+                <td>{{ user.createdDate }}</td>
                 <td>10.00</td>
                 <td><button class="button-primary">Buy</button></td>
               </tr>
-              <tr>
-                <td>User2</td>
-                <td>1000</td>
-                <td>0</td>
-                <td>May 16, 2019</td>
-                <td>10.00</td>
-                <td><button class="button-primary">Buy</button></td>
-              </tr>
+              {% endfor %}
             </tbody>
           </table>
       
@@ -132,5 +126,5 @@
 <!-- End Document
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
 </body>
-<script src="{{ url_for('static', filename='script.js') }}"></script>
+<script src="{{ url_for('static',filename='script.js') }}"></script>
 </html>
