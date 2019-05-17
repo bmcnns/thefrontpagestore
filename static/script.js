@@ -1,9 +1,3 @@
-document.getElementById("moreInfoButton").onclick = function() {
-	document.querySelector('#moreInfo').scrollIntoView({ 
-  		behavior: 'smooth' 
-	});
-}
-
 document.getElementById("contactUsButton").onclick = function() {
 	document.querySelector('#contactUs').scrollIntoView({ 
   		behavior: 'smooth' 

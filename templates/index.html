@@ -21,6 +21,7 @@
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
   <link rel="stylesheet" href="{{ url_for('static',filename='normalize.css') }}">
   <link rel="stylesheet" href="{{ url_for('static',filename='skeleton.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static',filename='custom.css') }}">
 
   <!-- Favicon
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
@@ -28,37 +29,32 @@
 
   <!-- JQuery -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
-  <script type="text/javascript" src="https://static.rocketr.net/assets/RocketrEmbedCustom.js"></script>
-
 </head>
 <body>
 
   <!-- Primary Page Layout
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <nav>
+        <ul>
+            <li>
+              <a>Cart
+                <img style="width: 16px" src="{{ url_for('static', filename='cart.png') }}">
+              </a>
+
+            </li>
+        </ul>
+  </nav>
   <div class="container">
       <div class="row">
         <div class="one-half column" style="margin-top: 25%; margin-bottom: 25%;">
-          <h3>thefrontpagestore.com</h3>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam hendrerit ligula rutrum iaculis ullamcorper. Quisque maximus, mi a elementum facilisis, ipsum magna eleifend augue, in dignissim augue lorem sed purus. Suspendisse accumsan arcu sed ex lobortis, sed aliquam sapien gravida. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Mauris sit amet hendrerit metus, id lobortis felis. </p>
-          <button class="button-primary" id="moreInfoButton">More information</button>
+          <h3>The Front Page Store</h3>
+          <p>Purchase aged, high karma Reddit accounts. When you purchase with
+          <strong>The Front Page Store</strong>, we deliver a satisfaction guarantee. 
+          Accounts are never banned from any subreddit.
+          Perfect for your marketing needs.  </p>
+          <button class="button-primary" id="accountsButton">Browse</button>
         </div>
       </div>
-      <div class="row">
-        <div id="moreInfo" style="padding-bottom: 10%;"> </div>
-      </div>
-      <div class="row">
-        <div class="one-half column" style="margin-top: 5%; margin-bottom: 25%;">
-            <h4>Ways to Pay</h4>
-            <button data-rocketr-invoice="eFRiQ3VhdU02Z1hERGlscFpkclprK0ZFbEZsUTJDSjY0d25PWTZRZ0M3OCtKSlhtbi9jUVNWcFdVR0VBcEtLeTRXQkVrV0lPTDN3YXdJdXNzUWt2OFlpUjg4c01zSHhiR215V2MrdS9rUGlleVkycGxUMzNkQXVCdFFFTGdyUDQ2NlVLMytDbEQ3ZUVqSElaREVnMjFyVllsZnRTRm41c2VlVG1FWGtsOGxQZzA0bmN1cjFlamRXWUJKTVFSMXB2Q2wrVDVDcnJuUDFVV2JYbEowRE9Gdz09" class="btn btn-success btn-medium">Buy Now</button>
-
-Preview Button:
-
-            
-
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam hendrerit ligula rutrum iaculis ullamcorper. Quisque maximus, mi a elementum facilisis, ipsum magna eleifend augue, in dignissim augue lorem sed purus. Suspendisse accumsan arcu sed ex lobortis, sed aliquam sapien gravida. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Mauris sit amet hendrerit metus, id lobortis felis. Donec id posuere lorem. Proin pharetra nulla lorem, vitae dictum ipsum sodales non. Maecenas arcu arcu, lacinia non tellus sed, bibendum mattis sem. Maecenas eleifend est tellus. Proin volutpat odio quis sapien venenatis sagittis. Curabitur ac hendrerit justo.</p>
-            <button id="accountsButton">Shop Now</button>
-          </div>
-        </div>
       <div class="row">
         <div id="accounts" style="padding-bottom: 10%;"> </div>
       </div>
@@ -78,7 +74,7 @@ Preview Button:
             <tbody>
               {% for user in users %}
               <tr>
-                <td>{{ user.name }}</td>
+                <td>{{ user.name[:3] + "............." + user.name[-3:] }}</td>
                 <td>{{ user.commentKarma }}</td>
                 <td>{{ user.linkKarma }}</td>
                 <td>{{ user.dateCreated }}</td>
@@ -98,7 +94,15 @@ Preview Button:
       <div class="row">
         <div class="one-half column" style="margin-top: 5%; margin-bottom: 25%;">
             <h4>Frequently Asked Questions</h4>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam hendrerit ligula rutrum iaculis ullamcorper. Quisque maximus, mi a elementum facilisis, ipsum magna eleifend augue, in dignissim augue lorem sed purus. Suspendisse accumsan arcu sed ex lobortis, sed aliquam sapien gravida. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Mauris sit amet hendrerit metus, id lobortis felis. Donec id posuere lorem. Proin pharetra nulla lorem, vitae dictum ipsum sodales non. Maecenas arcu arcu, lacinia non tellus sed, bibendum mattis sem. Maecenas eleifend est tellus. Proin volutpat odio quis sapien venenatis sagittis. Curabitur ac hendrerit justo.</p>
+            <div style="height: 25px"></div>
+            <h6 style="font-size: 20px"><em>How long will it take to get my account?</em></h6>
+            <p>For your convenience, your account(s) will be instantly delivered after the purchase.</p>
+            <h6 style="font-size: 20px"><em>What if I am unsatisfied?</em></h6>
+            <p>At <strong>thefrontpagestore.com</strong>, we offer a satisfaction guarantee. We will refund your purchase and put you in touch with our customer support.</p>
+            <h6 style="font-size: 20px"><em>Is bulk-pricing available? </em></h6>
+            <p>For more information on bulk-pricing, please contact us through our contact form.</p>
+            <h6 style="font-size: 20px"><em>How long do you take to respond? </em></h6>
+            <p><strong>thefrontpagestore.com</strong> will respond within 24 hours.</p>
             <button id="contactUsButton">Contact Us</button>
           </div>
           
@@ -117,10 +121,6 @@ Preview Button:
           
                 <label for="exampleMessage">Message</label>
                 <textarea class="u-full-width" placeholder="…" id="exampleMessage"></textarea>
-                <label class="example-send-yourself-copy">
-                  <input type="checkbox">
-                  <span class="label-body">Send a copy to yourself</span>
-                </label>
                 <input class="button-primary" type="submit" value="Submit">
           </div>
       </div>
