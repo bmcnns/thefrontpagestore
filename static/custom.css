@@ -1,0 +1,55 @@
+#paymentOptions img {
+	height: 100px;
+	display: inline;
+	padding-left: 10px;
+	padding-right: 10px;
+}
+
+.btn-red {
+	background-color: #710505;
+}
+
+nav {
+	position: fixed;
+	top: -100px;
+	width: 100%;
+	z-index: 999;
+}
+
+nav ul {
+	padding-top: 100px;
+ 	list-style-type: none;
+	overflow: hidden;
+	background-color: #111;
+	padding-bottom: 10px;
+}
+
+nav ul li {
+  float: right;
+  width: 100px;
+  margin: 0 auto;
+}
+
+nav ul li a {
+  display: inline
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  height: 100%;
+  text-decoration: none;
+}
+
+nav ul li img {
+  display: inline
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  padding-right: 14px;
+  padding-top: 16px;
+
+}
+
+/* Change the link color to #111 (black) on hover */
+nav ul li a:hover {
+  background-color: #111;
+}
