@@ -5,6 +5,8 @@ import datetime
 
 app = Flask(__name__)
 
+months = [ 'January', 'February', 'March', 'April', 'May',
+ 'June', 'July', 'August', 'September', 'November', 'December']
 #Authenticate PRAW
 r = praw.Reddit(client_id='QGNYNC0_WKmCPQ',
 				client_secret='7hhoPaR9dNg9hQZIx4GqXFTsaH0',
@@ -23,7 +25,8 @@ class User:
 		self.profile = r.redditor(username)
 		self.commentKarma = self.profile.comment_karma
 		self.linkKarma = self.profile.link_karma
-		self.dateCreated = datetime.datetime.utcfromtimestamp(self.profile.created_utc)
+		self.dateUnformatted = datetime.datetime.utcfromtimestamp(self.profile.created_utc)
+		self.dateCreated = months[self.dateUnformatted.month - 1] + " " + (str)(self.dateUnformatted.day) + ", " + (str)(self.dateUnformatted.year) 
 
 users = []
 

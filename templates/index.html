@@ -5,7 +5,7 @@
   <!-- Basic Page Needs
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
   <meta charset="utf-8">
-  <title>thefrontpagestore.com</title>
+  <title>The Frontpage Store</title>
   <meta name="description" content="">
   <meta name="author" content="">
 
@@ -54,6 +54,9 @@
           Perfect for your marketing needs.  </p>
           <button class="button-primary" id="accountsButton">Browse</button>
         </div>
+        <div class="one-half column" style="margin-top: 25%; margin-bottom: 25%;">
+          <img style="width: 100%;" src="{{ url_for('static', filename='banner.jpg') }}">
+        </div>
       </div>
       <div class="row">
         <div id="accounts" style="padding-bottom: 10%;"> </div>
@@ -79,12 +82,13 @@
                 <td>{{ user.linkKarma }}</td>
                 <td>{{ user.dateCreated }}</td>
                 <td>10.00</td>
-                <td><button class="button-primary">Buy</button></td>
+                <td><button>Add</button></td>
               </tr>
               {% endfor %}
             </tbody>
           </table>
-      
+          <button class="button-primary">Checkout</button>
+          <br>
           <button id="faqButton">Frequently Asked Questions</button>
         </div>
       </div>
