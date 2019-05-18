@@ -1,4 +1,5 @@
 from flask import Flask, render_template
+from flask_mail import Mail
 import sqlite3
 import praw
 import datetime

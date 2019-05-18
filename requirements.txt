@@ -1,7 +1,9 @@
+blinker==1.4
 certifi==2019.3.9
 chardet==3.0.4
 Click==7.0
 Flask==1.0.2
+Flask-Mail==0.9.1
 gunicorn==19.9.0
 idna==2.8
 itsdangerous==1.1.0
@@ -9,8 +11,10 @@ Jinja2==2.10.1
 MarkupSafe==1.1.1
 praw==6.2.0
 prawcore==1.0.1
+python-dateutil==2.8.0
 requests==2.22.0
 six==1.12.0
+squareconnect==2.20190508.0
 update-checker==0.16
 urllib3==1.25.2
 websocket-client==0.56.0
