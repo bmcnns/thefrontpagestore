@@ -1,138 +1,180 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-
-  <!-- Basic Page Needs
+    <!-- Basic Page Needs
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-  <meta charset="utf-8">
-  <title>Reddit Accounts - The Frontpage Store</title>
-  <meta name="author" content="Bryce MacInnis">
-  <meta name="description" content="Buy aged, high karma reddit accounts with instant delivery and a satisfaction guarantee." />
-  <!-- Mobile Specific Metas
+    <meta charset="utf-8">
+    <title>Reddit Accounts - The Frontpage Store</title>
+    <meta name="author" content="Bryce MacInnis">
+    <meta name="description" content="Buy aged, high karma reddit accounts with instant delivery and a satisfaction guarantee." />
+    <!-- Mobile Specific Metas
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-
-  <!-- FONT
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- FONT
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-  <link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">
-
-  <!-- CSS
+    <link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">
+    <!-- CSS
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-  <link rel="stylesheet" href="{{ url_for('static',filename='normalize.css') }}">
-  <link rel="stylesheet" href="{{ url_for('static',filename='skeleton.css') }}">
-  <link rel="stylesheet" href="{{ url_for('static',filename='custom.css') }}">
-
-  <!-- Favicon
+    <link rel="stylesheet" href="{{ url_for('static',filename='normalize.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='skeleton.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='custom.css') }}">
+    <!-- Favicon
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-  <link rel="icon" type="image/png" href="images/favicon.png">
-
-  <!-- JQuery -->
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='favicon.png') }}">
+    <!-- JQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
 </head>
-<body>
 
-  <!-- Primary Page Layout
+<body>
+    <!-- Primary Page Layout
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-  <nav>
+    <nav>
         <ul>
             <li>
-              <a>Cart
-                <img style="width: 16px" src="{{ url_for('static', filename='cart.png') }}">
-              </a>
-
+                <a href="#yourCart">
+                    Cart
+                    <img style="width: 16px" src="{{ url_for('static', filename='cart.png') }}">
+                </a>
             </li>
         </ul>
-  </nav>
-  <div class="container">
-      <div class="row">
-        <div class="one-half column" style="margin-top: 25%; margin-bottom: 25%;">
-          <h3>The Frontpage Store</h3>
-          <p>Purchase aged, high karma Reddit accounts. When you purchase with
-          <strong>The Front Page Store</strong>, we deliver a satisfaction guarantee. 
-          Accounts are never banned from any subreddit.
-          Perfect for your marketing needs.  </p>
-          <button class="button-primary" id="accountsButton">Browse</button>
-        </div>
-        <div class="one-half column" style="margin-top: 25%; margin-bottom: 25%;">
-          <img style="width: 100%;" src="{{ url_for('static', filename='banner.jpg') }}">
-        </div>
-      </div>
-      <div class="row">
-        <div id="accounts" style="padding-bottom: 10%;"> </div>
-      </div>
-      <div class="row">
-        <div class="twelve columns" style="margin-top: 5%; margin-bottom: 25%;">
-          <h4>Accounts</h4>
-          <table class="u-full-width">
-            <thead>
-              <tr>
-                <th>Username</th>
-                <th>Comment Karma</th>
-                <th>Link Karma</th>
-                <th>Created</th>
-                <th>Price</th>
-              </tr>
-            </thead>
-            <tbody>
-              {% for user in users %}
-              <tr>
-                <td>{{ user.name[:3] + "............." + user.name[-3:] }}</td>
-                <td>{{ user.commentKarma }}</td>
-                <td>{{ user.linkKarma }}</td>
-                <td>{{ user.dateCreated }}</td>
-                <td>10.00</td>
-                <td><button>Add</button></td>
-              </tr>
-              {% endfor %}
-            </tbody>
-          </table>
-          <button class="button-primary">Checkout</button>
-          <br>
-          <button id="faqButton">Frequently Asked Questions</button>
-        </div>
-      </div>
-      <div class="row">
-        <div id="faq" style="padding-bottom: 10%;"> </div>
-      </div>
-      <div class="row">
-        <div class="one-half column" style="margin-top: 5%; margin-bottom: 25%;">
-            <h4>Frequently Asked Questions</h4>
-            <div style="height: 25px"></div>
-            <h6 style="font-size: 20px"><em>How long will it take to get my account?</em></h6>
-            <p>For your convenience, your account(s) will be instantly delivered after the purchase.</p>
-            <h6 style="font-size: 20px"><em>What if I am unsatisfied?</em></h6>
-            <p>At <strong>thefrontpagestore.com</strong>, we offer a satisfaction guarantee. We will refund your purchase and put you in touch with our customer support.</p>
-            <h6 style="font-size: 20px"><em>Is bulk-pricing available? </em></h6>
-            <p>For more information on bulk-pricing, please contact us through our contact form.</p>
-            <h6 style="font-size: 20px"><em>How long do you take to respond? </em></h6>
-            <p><strong>thefrontpagestore.com</strong> will respond within 24 hours.</p>
-            <button id="contactUsButton">Contact Us</button>
-          </div>
-          
-        </div>
-
-      <div class="row">
-        <div id="contactUs" style="padding-bottom: 10%;"> </div>
-      </div>
-
-      <form>
+    </nav>
+    <div class="container">
         <div class="row">
-          <div class="twelve columns" style="margin-top: 5%; margin-bottom: 25%;">
-                <h4>Get in touch</h4>
-                <label for="exampleEmailInput">Your email</label>
-                <input class="u-full-width" type="email" placeholder="your-email@mailbox.com" id="exampleEmailInput">
-          
-                <label for="exampleMessage">Message</label>
-                <textarea class="u-full-width" placeholder="…" id="exampleMessage"></textarea>
-                <input class="button-primary" type="submit" value="Submit">
-          </div>
-      </div>
-    </form>
-  </div>
-    
+            <div class="one-half column" style="margin-top: 25%; margin-bottom: 25%;">
+                <h3>The Frontpage Store</h3>
+                <p>Purchase aged, high karma Reddit accounts. When you purchase with
+                    <strong>The Frontpage Store</strong>, we deliver a satisfaction guarantee.
+                    Accounts are never banned from any subreddit.
+                    Perfect for your marketing needs. </p>
+                <button class="button-primary" id="accountsButton">Browse</button>
+            </div>
+            <div class="one-half column" style="margin-top: 25%; margin-bottom: 25%;">
+                <img style="width: 100%;" src="{{ url_for('static', filename='banner.jpg') }}">
+            </div>
+        </div>
+        <div class="row">
+            <div id="accounts" style="padding-bottom: 10%;"> </div>
+        </div>
+        <div class="row">
+            <div class="twelve columns" style="margin-top: 5%; margin-bottom: 25%;">
+                <h4>Accounts</h4>
+                <table class="u-full-width">
+                    <thead>
+                        <tr>
+                            <th>Username</th>
+                            <th>Comment Karma</th>
+                            <th>Link Karma</th>
+                            <th>Created</th>
+                            <th>Price</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for user in users %}
+                        <tr>
+                            <td>{{ user.name[:3] + "............." + user.name[-3:] }}</td>
+                            <td>{{ user.commentKarma }}</td>
+                            <td>{{ user.linkKarma }}</td>
+                            <td>{{ user.dateCreated }}</td>
+                            <td>10.00</td>
+                            <td>
+                                <form method="post" action="/">
+                                    <input type="hidden" value="{{ user.name }}" name="Username">
+                                    <input type="submit" value="Add" name="Add">
+                                </form>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+                <button id="checkoutButton">Your Cart</button>
+                <br>
+                <button class="faqButton">Frequently Asked Questions</button>
+            </div>
+            <div class="row">
+                <div style="padding-bottom: 20%;"> </div>
+            </div>
+            <div class="row">
+                <div class="twelve columns" style="margin-top: 5%; margin-bottom: 25%;">
+                    <h4 id="yourCart">Your Cart</h4>
+                    {% if total > 0 %}
+                    <table class="u-full-width">
+                        <thead>
+                            <tr>
+                                <th>Username</th>
+                                <th>Comment Karma</th>
+                                <th>Link Karma</th>
+                                <th>Created</th>
+                                <th>Price</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for user in cart %}
+                            <tr>
+                                <td>{{ user.name[:3] + "............." + user.name[-3:] }}</td>
+                                <td>{{ user.commentKarma }}</td>
+                                <td>{{ user.linkKarma }}</td>
+                                <td>{{ user.dateCreated }}</td>
+                                <td>{{ user.cost }}</td>
+                                <td>
+                                    <form method="post" action="/">
+                                        <input type="hidden" value="{{ user.name }}" name="Username">
+                                        <input type="submit" value="Remove" name="Remove">
+                                    </form>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                    <p>Total Cost: ${{ total }}.00</p>
+                    <button class="button-primary">Pay now</button>
+                    <br>
+                    {% else %}
+                    <p>You currently have no items in your cart.</p>
+                    {% endif %}
+                    
 
-<!-- End Document
+
+                    <button class="faqButton">Frequently Asked Questions</button>
+                </div>
+            </div>
+            <div class="row">
+                <div id="faq" style="padding-bottom: 10%;"> </div>
+            </div>
+            <div class="row">
+                <div class="one-half column" style="margin-top: 5%; margin-bottom: 25%;">
+                    <h4>Frequently Asked Questions</h4>
+                    <div style="height: 25px"></div>
+                    <h6 style="font-size: 20px"><em>How long will it take to get my account?</em></h6>
+                    <p>For your convenience, your account(s) will be instantly delivered after the purchase.</p>
+                    <h6 style="font-size: 20px"><em>What if I am unsatisfied?</em></h6>
+                    <p>At <strong>thefrontpagestore.com</strong>, we offer a satisfaction guarantee. We will refund your purchase and put you in touch with our customer support.</p>
+                    <h6 style="font-size: 20px"><em>Is bulk-pricing available? </em></h6>
+                    <p>For more information on bulk-pricing, please contact us through our contact form.</p>
+                    <h6 style="font-size: 20px"><em>How long do you take to respond? </em></h6>
+                    <p><strong>thefrontpagestore.com</strong> will respond within 24 hours.</p>
+                    <button id="contactUsButton">Contact Us</button>
+                </div>
+            </div>
+            <div class="row">
+                <div id="contactUs" style="padding-bottom: 10%;"> </div>
+            </div>
+            <form>
+                <div class="row">
+                    <div class="twelve columns" style="margin-top: 5%; margin-bottom: 25%;">
+                        <h4>Get in touch</h4>
+                        <label for="exampleEmailInput">Your email</label>
+                        <input class="u-full-width" type="email" placeholder="your-email@mailbox.com" id="exampleEmailInput">
+                        <label for="exampleMessage">Message</label>
+                        <textarea class="u-full-width" placeholder="…" id="exampleMessage"></textarea>
+                        <input class="button-primary" type="submit" value="Submit">
+                    </div>
+                </div>
+            </form>
+        </div>
+        <!-- End Document
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
 </body>
 <script src="{{ url_for('static',filename='script.js') }}"></script>
+
 </html>

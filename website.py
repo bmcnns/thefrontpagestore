@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request
 from flask_mail import Mail
 import sqlite3
 import praw
@@ -28,11 +28,16 @@ class User:
 		self.linkKarma = self.profile.link_karma
 		self.dateUnformatted = datetime.datetime.utcfromtimestamp(self.profile.created_utc)
 		self.dateCreated = months[self.dateUnformatted.month - 1] + " " + (str)(self.dateUnformatted.day) + ", " + (str)(self.dateUnformatted.year) 
+		self.cost = 10
 
 users = []
+cart = []
+totalCost = 0
 
-@app.route('/')
+@app.route('/', methods=['GET', 'POST'])
 def load():
+	global totalCost
+
 	del users[:]
 
 	#connect to the database
@@ -57,7 +62,23 @@ def load():
 		user.commentKarma = user.profile.comment_karma
 		user.linkKarma = user.profile.link_karma
 
-	return render_template('index.html', users=users)
+	if request.method == 'POST':
+		if request.form.get('Add') == 'Add':
+			for user in users:
+				if user.name == request.form.get('Username'):
+					for cartUser in cart:
+						if user.name == cartUser.name:
+							return render_template('index.html', users=users, cart=cart, total=totalCost)
+					cart.append(user)
+					totalCost += user.cost
+		elif request.form.get('Remove') == 'Remove':
+			for user in cart:
+				if user.name == request.form.get('Username'):
+					cart.remove(user)
+					totalCost -= user.cost
+		return render_template('index.html', users=users, cart=cart,total=totalCost)
+	else:
+		return render_template('index.html', users=users, cart=cart,total=totalCost)
 
 if __name__ == "__main__":
 	app.run(host='0.0.0.0')
