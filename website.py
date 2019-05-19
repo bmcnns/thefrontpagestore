@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, url_for
 from flask_mail import Mail, Message
 import sqlite3
 import praw
@@ -63,8 +63,8 @@ def load():
 		password = row[1]
 		client_id = row[2]
 		client_secret = row[3]
-		user_agent = row[4]
-		cost = row[5]
+		cost = row[4]
+		user_agent = row[5]
 
 		users.append(User(username,password=password,client_id=client_id,client_secret=client_secret,user_agent=user_agent,cost=cost))
 
@@ -80,12 +80,14 @@ def load():
 						if user.name == cartUser.name:
 							return render_template('index.html', users=users, cart=cart, total=totalCost)
 					cart.append(user)
-					totalCost += user.cost
+					totalCost += (int)(user.cost)
 		elif request.form.get('Remove') == 'Remove':
 			for user in cart:
 				if user.name == request.form.get('Username'):
 					cart.remove(user)
-					totalCost -= user.cost
+					totalCost -= (int)(user.cost)
+		elif request.form.get('Checkout') == 'Checkout':
+			charge();
 
 		return render_template('index.html', users=users, cart=cart,total=totalCost)
 	else:
@@ -93,7 +95,7 @@ def load():
 
 @app.route('/charge', methods=['POST'])
 def charge():
-	stripe.api_key = 'sk_test_40TyvML3FAe5bTXgHyMYEPmd00BhM5sjhR'
+	stripe.api_key = 'sk_live_ArRWnSubtTtdTcXyCpEhFcu2002YbfhXh9'
 
 	# Token is created using Checkout or Elements!
 	# Get the payment token ID submitted by the form:
@@ -103,8 +105,8 @@ def charge():
 	userString = ''
 	for user in cart:
 		userString += user.name + '\n'
-		messageBody += "Username: " + user.name
-		messageBody += "Password: " + user.password
+		messageBody += "Username: " + user.name + '\n'
+		messageBody += "Password: " + user.password + '\n'
 
 	charge = stripe.Charge.create(
 	    amount=totalCost*100,
@@ -124,6 +126,8 @@ def charge():
 
 	mail.send(msg)
 
+	accountString = ""
+
 	for user in cart:
 		accountString += user.name + '\n'
 
@@ -132,11 +136,14 @@ def charge():
 	c = conn.cursor()
 
 	for user in cart:
-		c.execute("DELETE FROM Accounts WHERE Username='{{ user.name }}';")
-	
-	conn.close()
+		c.execute('SELECT * FROM Accounts')
+		all_rows = c.fetchall()
+		for row in all_rows:
+			if row[0] == user.name:
+				c.execute("DELETE FROM Accounts WHERE Username='"+row[0]+"';") 
 
-	accountString = ""
+		conn.commit()
+		conn.close()
 
 	return render_template('payment.html', accounts=accountString)
 
@@ -146,6 +153,11 @@ def contact():
 		isValidEmail = re.match('[^@]+@[^@]+\.[^@]+', request.form.get('EmailAddress'))
 		if not isValidEmail:
 			render_template('error.html', error="Email is invalid")
+
+		msg = Message(request.form.get('EmailAddress'),
+			sender='thefrontpagestore@gmail.com',
+			recipients=['thefrontpagestore@gmail.com'],
+			body=request.form.get('EmailMessage'))
 
 		mail.send(msg)
 
