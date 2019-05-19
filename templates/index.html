@@ -34,7 +34,7 @@
             <li>
                 <a href="#yourCart">
                     Cart
-                    <img style="width: 16px; margin-top: -30px;" src="{{ url_for('static', filename='cart.png') }}">
+                    <img style="width: 16px; margin-top: 5px;" src="{{ url_for('static', filename='cart.png') }}">
                 </a>
             </li>
         </ul>
@@ -132,9 +132,6 @@
                     {% else %}
                     <p>You currently have no items in your cart.</p>
                     {% endif %}
-                    
-
-
                     <button class="faqButton">Frequently Asked Questions</button>
                 </div>
             </div>
@@ -159,18 +156,18 @@
             <div class="row">
                 <div id="contactUs" style="padding-bottom: 10%;"> </div>
             </div>
-            <form>
-                <div class="row">
-                    <div class="twelve columns" style="margin-top: 5%; margin-bottom: 25%;">
-                        <h4>Get in touch</h4>
+            <div class="row">
+                <div class="twelve columns" style="margin-top: 5%; margin-bottom: 25%;">
+                    <h4>Get in touch</h4>
+                    <form method="post" action="/contact">
                         <label for="exampleEmailInput">Your email</label>
-                        <input class="u-full-width" type="email" placeholder="your-email@mailbox.com" id="exampleEmailInput">
+                        <input name="EmailAddress" class="u-full-width" type="email" placeholder="your-email@mailbox.com" id="exampleEmailInput">
                         <label for="exampleMessage">Message</label>
-                        <textarea class="u-full-width" placeholder="…" id="exampleMessage"></textarea>
-                        <input class="button-primary" type="submit" value="Submit">
-                    </div>
+                        <textarea name="EmailMessage" class="u-full-width" placeholder="…" id="exampleMessage"></textarea>
+                        <input name="Send" type="submit" value="Submit">
+                    </form>
                 </div>
-            </form>
+            </div>
         </div>
         <!-- End Document
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->

@@ -1,10 +1,18 @@
 from flask import Flask, render_template, request
-from flask_mail import Mail
+from flask_mail import Mail, Message
 import sqlite3
 import praw
 import datetime
+import re
 
 app = Flask(__name__)
+app.config['MAIL_SERVER'] = 'smtp.gmail.com'
+app.config['MAIL_PORT'] = 465
+app.config['MAIL_USERNAME'] = 'thefrontpagestore@gmail.com'
+app.config['MAIL_PASSWORD'] = 'Alfismo249_'
+app.config['MAIL_USE_TLS'] = False
+app.config['MAIL_USE_SSL'] = True
+mail = Mail(app)
 
 months = [ 'January', 'February', 'March', 'April', 'May',
  'June', 'July', 'August', 'September', 'November', 'December']
@@ -76,9 +84,30 @@ def load():
 				if user.name == request.form.get('Username'):
 					cart.remove(user)
 					totalCost -= user.cost
+		elif request.form.get('Send') == 'Send':
+			return 'Email sent!'
+
 		return render_template('index.html', users=users, cart=cart,total=totalCost)
 	else:
 		return render_template('index.html', users=users, cart=cart,total=totalCost)
+
+@app.route('/contact', methods=['POST'])
+def contact():
+	if request.form.get('Send') == 'Submit':
+		isValidEmail = re.match('[^@]+@[^@]+\.[^@]+', request.form.get('EmailAddress'))
+		if not isValidEmail:
+			return "Email is invalid"
+
+		msg = Message(request.form.get('EmailAddress'),
+			body=request.form.get('EmailMessage'),
+			sender="thefrontpagestore@gmail.com", 
+			recipients=["thefrontpagestore@gmail.com"])
+
+		mail.send(msg)
+
+		return render_template('contact.html')
+	else:
+		return 'An error has occurred sending your email.'
 
 if __name__ == "__main__":
 	app.run(host='0.0.0.0')
