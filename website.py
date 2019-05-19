@@ -24,7 +24,6 @@ r = praw.Reddit(client_id='QGNYNC0_WKmCPQ',
 				user_agent='Language processing script by NecessaryFlan',
 				username='NecessaryFlan')
 
-
 class User:
 	def __init__(self, username, password, client_id, client_secret, user_agent, cost):
 		self.name = username
