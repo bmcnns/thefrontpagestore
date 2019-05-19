@@ -24,6 +24,7 @@
     <link rel="icon" type="image/png" href="{{ url_for('static', filename='favicon.png') }}">
     <!-- JQuery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+    <script src="https://js.stripe.com/v3/"></script>
 </head>
 
 <body>
@@ -127,7 +128,25 @@
                         </tbody>
                     </table>
                     <p>Total Cost: ${{ total }}.00</p>
-                    <button class="button-primary">Pay now</button>
+                    <form action="/charge" method="post" id="payment-form">
+                      <div class="form-row">
+                        <label for="buyer-email-address">
+                            Your email: 
+                        </label>
+                        <input name="EmailAddress" class="u-full-width" type="email" placeholder="your-email@mailbox.com" id="buyer-email-address">
+                        <label for="card-element">
+                          Credit or debit card
+                        </label>
+                        <div id="card-element">
+                          <!-- A Stripe Element will be inserted here. -->
+                        </div>
+
+                        <!-- Used to display Element errors. -->
+                        <div id="card-errors" role="alert"></div>
+                      </div>
+
+                      <button>Submit Payment</button>
+                    </form>
                     <br>
                     {% else %}
                     <p>You currently have no items in your cart.</p>

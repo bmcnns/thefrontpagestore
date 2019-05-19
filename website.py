@@ -4,6 +4,7 @@ import sqlite3
 import praw
 import datetime
 import re
+import stripe
 
 app = Flask(__name__)
 app.config['MAIL_SERVER'] = 'smtp.gmail.com'
@@ -25,7 +26,7 @@ r = praw.Reddit(client_id='QGNYNC0_WKmCPQ',
 
 
 class User:
-	def __init__(self, username, password, client_id, client_secret, user_agent):
+	def __init__(self, username, password, client_id, client_secret, user_agent, cost):
 		self.name = username
 		self.password = password
 		self.client_id = client_id
@@ -36,7 +37,7 @@ class User:
 		self.linkKarma = self.profile.link_karma
 		self.dateUnformatted = datetime.datetime.utcfromtimestamp(self.profile.created_utc)
 		self.dateCreated = months[self.dateUnformatted.month - 1] + " " + (str)(self.dateUnformatted.day) + ", " + (str)(self.dateUnformatted.year) 
-		self.cost = 10
+		self.cost = cost
 
 users = []
 cart = []
@@ -63,8 +64,9 @@ def load():
 		client_id = row[2]
 		client_secret = row[3]
 		user_agent = row[4]
+		cost = row[5]
 
-		users.append(User(username,password=password,client_id=client_id,client_secret=client_secret,user_agent=user_agent))
+		users.append(User(username,password=password,client_id=client_id,client_secret=client_secret,user_agent=user_agent,cost=cost))
 
 	for user in users:
 		user.commentKarma = user.profile.comment_karma
@@ -84,30 +86,72 @@ def load():
 				if user.name == request.form.get('Username'):
 					cart.remove(user)
 					totalCost -= user.cost
-		elif request.form.get('Send') == 'Send':
-			return 'Email sent!'
 
 		return render_template('index.html', users=users, cart=cart,total=totalCost)
 	else:
 		return render_template('index.html', users=users, cart=cart,total=totalCost)
+
+@app.route('/charge', methods=['POST'])
+def charge():
+	stripe.api_key = 'sk_test_40TyvML3FAe5bTXgHyMYEPmd00BhM5sjhR'
+
+	# Token is created using Checkout or Elements!
+	# Get the payment token ID submitted by the form:
+	token = request.form['stripeToken'] # Using Flask
+	
+	messageBody = "Your accounts are here!\n"
+	userString = ''
+	for user in cart:
+		userString += user.name + '\n'
+		messageBody += "Username: " + user.name
+		messageBody += "Password: " + user.password
+
+	charge = stripe.Charge.create(
+	    amount=totalCost*100,
+	    currency='usd',
+	    description='Accounts purchased: ' + userString,
+	    source=token,
+	)
+
+	msg = Message("Your purchased account(s)",
+		body=messageBody,
+		sender="thefrontpagestore@gmail.com", 
+		recipients=[request.form.get('EmailAddress'),"thefrontpagestore@gmail.com"])
+
+	isValidEmail = re.match('[^@]+@[^@]+\.[^@]+', request.form.get('EmailAddress'))
+	if not isValidEmail:
+		render_template('error.html', error="Email is invalid")
+
+	mail.send(msg)
+
+	for user in cart:
+		accountString += user.name + '\n'
+
+	#connect to the database
+	conn = sqlite3.connect('accounts.db')
+	c = conn.cursor()
+
+	for user in cart:
+		c.execute("DELETE FROM Accounts WHERE Username='{{ user.name }}';")
+	
+	conn.close()
+
+	accountString = ""
+
+	return render_template('payment.html', accounts=accountString)
 
 @app.route('/contact', methods=['POST'])
 def contact():
 	if request.form.get('Send') == 'Submit':
 		isValidEmail = re.match('[^@]+@[^@]+\.[^@]+', request.form.get('EmailAddress'))
 		if not isValidEmail:
-			return "Email is invalid"
-
-		msg = Message(request.form.get('EmailAddress'),
-			body=request.form.get('EmailMessage'),
-			sender="thefrontpagestore@gmail.com", 
-			recipients=["thefrontpagestore@gmail.com"])
+			render_template('error.html', error="Email is invalid")
 
 		mail.send(msg)
 
 		return render_template('contact.html')
 	else:
-		return 'An error has occurred sending your email.'
+		render_template('error.html', error="'An error has occurred sending your email.'") 
 
 if __name__ == "__main__":
 	app.run(host='0.0.0.0')
