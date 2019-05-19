@@ -25,7 +25,7 @@ for (var i = 0; i < document.getElementsByClassName("faqButton").length; i++)
 	}
 }
 
-var stripe = Stripe('sk_live_ArRWnSubtTtdTcXyCpEhFcu2002YbfhXh9');
+var stripe = Stripe('pk_live_IdCIf0j5kRP6meo3Re4jkaRI00NEPDM26g');
 var elements = stripe.elements();
 
 // Custom styling can be passed to options when creating an Element.
