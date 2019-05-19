@@ -77,7 +77,7 @@
                             <td>{{ user.commentKarma }}</td>
                             <td>{{ user.linkKarma }}</td>
                             <td>{{ user.dateCreated }}</td>
-                            <td>{{ user.cost }}</td>
+                            <td>{{ user.cost }}.00 USD</td>
                             <td>
                                 <form method="post" action="/">
                                     <input type="hidden" value="{{ user.name }}" name="Username">
@@ -127,7 +127,7 @@
                             {% endfor %}
                         </tbody>
                     </table>
-                    <p>Total Cost: ${{ total }}.00</p>
+                    <p>Total Cost: ${{ total }}.00 USD</p>
                     <form action="/charge" method="post" id="payment-form">
                       <div class="form-row">
                         <label for="buyer-email-address">
