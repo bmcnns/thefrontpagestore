@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Basic Page Needs
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+    <meta charset="utf-8">
+    <title>Reddit Accounts - The Frontpage Store</title>
+    <meta name="author" content="Bryce MacInnis">
+    <meta name="description" content="Buy aged, high karma reddit accounts with instant delivery and a satisfaction guarantee." />
+    <!-- Mobile Specific Metas
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- FONT
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+    <link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">
+    <!-- CSS
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+    <link rel="stylesheet" href="{{ url_for('static',filename='normalize.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='skeleton.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='custom.css') }}">
+    <!-- Favicon
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='favicon.png') }}">
+    <!-- JQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+    <script src="https://js.stripe.com/v3/"></script>
+</head>
+
+<body>
+    <!-- Primary Page Layout
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+   <nav>
+        <ul>
+            <li>
+                <a href="/contact">Contact</a>
+            </li>
+            <li>
+                <a href="/faq">FAQ</a>
+            </li>
+            <li>
+                <a href="/cart">Cart</a>
+            </li>
+            <li>
+                <a href="/accounts">Accounts</a>
+            </li>
+            <li>   
+                <a href="/">Home</a>
+            </li>
+        </ul>
+    </nav>
+    <div class="container">
+        <div class="row">
+            <div class="twelve columns" style="margin-top: 15%; margin-bottom: 25%;">
+            <h4>Accounts</h4>
+            <table class="u-full-width">
+                <thead>
+                    <tr>
+                        <th>Username</th>
+                        <th>Comment Karma</th>
+                        <th>Link Karma</th>
+                        <th>Created</th>
+                        <th>Price</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for user in users %}
+                    <tr>
+                        <td>{{ user.name[:3] + "............." + user.name[-3:] }}</td>
+                        <td>{{ user.commentKarma }}</td>
+                        <td>{{ user.linkKarma }}</td>
+                        <td>{{ user.dateCreated }}</td>
+                        <td>${{ user.cost }}.00</td>
+                        <td>
+                            <form method="post" action="/accounts">
+                                <input type="hidden" value="{{ user.name }}" name="Username">
+                                <input type="submit" value="Add" name="Add">
+                            </form>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
