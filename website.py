@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, url_for
+from flask import Flask, render_template, request, url_for, redirect_to
 from flask_mail import Mail, Message
 import sqlite3
 import praw
@@ -42,9 +42,13 @@ users = []
 cart = []
 totalCost = 0
 
-@app.route('/')
+@app.route('/', methods=['GET'])
 def home():
 	return render_template('index.html')
+
+@app.route('/', methods=['POST'])
+def home():
+	return redirect_to('accounts.html')
 
 @app.route('/accounts', methods=['GET', 'POST'])
 def load():
