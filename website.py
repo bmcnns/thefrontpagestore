@@ -35,7 +35,7 @@ class User:
 		self.commentKarma = self.profile.comment_karma
 		self.linkKarma = self.profile.link_karma
 		self.dateUnformatted = datetime.datetime.utcfromtimestamp(self.profile.created_utc)
-		self.dateCreated = (str)(self.dateUnformatted.month - 1) + " " + (str)(self.dateUnformatted.day) + ", " + (str)(self.dateUnformatted.year) 
+		self.dateCreated = months[self.dateUnformatted.month - 1] + " " + (str)(self.dateUnformatted.day) + ", " + (str)(self.dateUnformatted.year) 
 		self.cost = cost
 
 users = []
