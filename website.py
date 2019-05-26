@@ -166,7 +166,7 @@ def contact_view():
 def cartView():
 	global totalCost
 	global cart
-	return render_template('cart.html', total=totalCost, cart=cart)
+	return render_template('cart.html', total=totalCost, users=users, cart=cart)
 
 @app.route('/accounts', methods=['GET'])
 def accounts():
