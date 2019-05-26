@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, url_for, redirect_to
+from flask import Flask, render_template, request, url_for, redirect
 from flask_mail import Mail, Message
 import sqlite3
 import praw
@@ -48,7 +48,7 @@ def home():
 
 @app.route('/', methods=['POST'])
 def home():
-	return redirect_to('accounts.html')
+	return redirect(url_for('index.html'))
 
 @app.route('/accounts', methods=['GET', 'POST'])
 def load():
