@@ -186,7 +186,7 @@ def contact():
 
 		mail.send(msg)
 
-		return render_template('contact.html')
+		return render_template('email.html')
 	else:
 		render_template('error.html', error="'An error has occurred sending your email.'") 
 
