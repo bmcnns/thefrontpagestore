@@ -16,7 +16,7 @@ app.config['MAIL_USE_SSL'] = True
 mail = Mail(app)
 
 months = [ 'January', 'February', 'March', 'April', 'May',
- 'June', 'July', 'August', 'September', 'November', 'December']
+ 'June', 'July', 'August', 'September', 'October', 'November', 'December']
 #Authenticate PRAW
 r = praw.Reddit(client_id='QGNYNC0_WKmCPQ',
 				client_secret='7hhoPaR9dNg9hQZIx4GqXFTsaH0',
@@ -35,7 +35,7 @@ class User:
 		self.commentKarma = self.profile.comment_karma
 		self.linkKarma = self.profile.link_karma
 		self.dateUnformatted = datetime.datetime.utcfromtimestamp(self.profile.created_utc)
-		self.dateCreated = months[self.dateUnformatted.month - 1] + " " + (str)(self.dateUnformatted.day) + ", " + (str)(self.dateUnformatted.year) 
+		self.dateCreated = (str)(self.dateUnformatted.month - 1) + " " + (str)(self.dateUnformatted.day) + ", " + (str)(self.dateUnformatted.year) 
 		self.cost = cost
 
 users = []
