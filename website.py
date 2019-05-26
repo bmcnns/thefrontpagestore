@@ -48,7 +48,7 @@ def home():
 
 @app.route('/', methods=['POST'])
 def home_redirect():
-	return redirect(url_for('index.html'))
+	return render_template('accounts.html', users=users)
 
 @app.route('/accounts', methods=['GET', 'POST'])
 def load():

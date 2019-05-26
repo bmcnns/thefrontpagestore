@@ -44,8 +44,8 @@
             <li>
                 <a href="/accounts">Accounts</a>
             </li>
-            <li>   
-                <a href="/">Home</a>
+            <li>
+                <a href='/'>Home</a>
             </li>
         </ul>
     </nav>
@@ -58,15 +58,19 @@
                     Accounts are never banned from any subreddit.
                     Perfect for your marketing needs. </p>
                 <form action="/" method="post">
-                    <button class="button-primary" id="accountsButton">Browse</button>
+                    <input type="submit" class="button-primary" id="accountsButton" value="Browse">
                 </form>
             </div>
             <div class="one-half column" style="margin-top: 25%; margin-bottom: 25%;">
                 <img style="width: 60%;" src="{{ url_for('static', filename='spaceship.jpg') }}">
-            </div>       
+            </div>
         </div>
+
+            
+    </div>
         <!-- End Document
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
 </body>
 <script src="{{ url_for('static',filename='script.js') }}"></script>
+
 </html>
