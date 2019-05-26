@@ -47,7 +47,7 @@ def home():
 	return render_template('index.html')
 
 @app.route('/', methods=['POST'])
-def home():
+def home_redirect():
 	return redirect(url_for('index.html'))
 
 @app.route('/accounts', methods=['GET', 'POST'])
