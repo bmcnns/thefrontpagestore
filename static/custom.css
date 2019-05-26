@@ -14,14 +14,16 @@ nav {
 	top: -100px;
 	width: 100%;
 	z-index: 999;
+
 }
 
 nav ul {
-	padding-top: 100px;
+	padding-top: 110px;
  	list-style-type: none;
 	overflow: hidden;
-	background-color: #111;
+	background-color: #dddddd;
 	padding-bottom: 10px;
+  border: 1px solid black;
 }
 
 nav ul li {
@@ -51,5 +53,5 @@ nav ul li img {
 
 /* Change the link color to #111 (black) on hover */
 nav ul li a:hover {
-  background-color: black;
+  background-color: #dddddd;
 }

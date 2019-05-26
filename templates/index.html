@@ -33,10 +33,19 @@
     <nav>
         <ul>
             <li>
-                <a href="#yourCart">
-                    Cart
-                    <img style="width: 16px; margin-top: 5px;" src="{{ url_for('static', filename='cart.png') }}">
-                </a>
+                <a href="/contact">Contact</a>
+            </li>
+            <li>
+                <a href="/faq">FAQ</a>
+            </li>
+            <li>
+                <a href="/cart">Cart</a>
+            </li>
+            <li>
+                <a href="/accounts">Accounts</a>
+            </li>
+            <li>   
+                <a href="/">Home</a>
             </li>
         </ul>
     </nav>
@@ -48,149 +57,16 @@
                     <strong>The Frontpage Store</strong>, we deliver a satisfaction guarantee.
                     Accounts are never banned from any subreddit.
                     Perfect for your marketing needs. </p>
-                <button class="button-primary" id="accountsButton">Browse</button>
+                <form action="/" method="post">
+                    <button class="button-primary" id="accountsButton">Browse</button>
+                </form>
             </div>
             <div class="one-half column" style="margin-top: 25%; margin-bottom: 25%;">
-                <img style="width: 100%;" src="{{ url_for('static', filename='banner.jpg') }}">
-            </div>
-        </div>
-        <div class="row">
-            <div id="accounts" style="padding-bottom: 10%;"> </div>
-        </div>
-        <div class="row">
-            <div class="twelve columns" style="margin-top: 5%; margin-bottom: 25%;">
-                <h4>Accounts</h4>
-                <table class="u-full-width">
-                    <thead>
-                        <tr>
-                            <th>Username</th>
-                            <th>Comment Karma</th>
-                            <th>Link Karma</th>
-                            <th>Created</th>
-                            <th>Price</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {% for user in users %}
-                        <tr>
-                            <td>{{ user.name[:3] + "............." + user.name[-3:] }}</td>
-                            <td>{{ user.commentKarma }}</td>
-                            <td>{{ user.linkKarma }}</td>
-                            <td>{{ user.dateCreated }}</td>
-                            <td>${{ user.cost }}.00</td>
-                            <td>
-                                <form method="post" action="/">
-                                    <input type="hidden" value="{{ user.name }}" name="Username">
-                                    <input type="submit" value="Add" name="Add">
-                                </form>
-                            </td>
-                        </tr>
-                        {% endfor %}
-                    </tbody>
-                </table>
-                <button id="checkoutButton">Your Cart</button>
-                <br>
-                <button class="faqButton">Frequently Asked Questions</button>
-            </div>
-            <div class="row">
-                <div style="padding-bottom: 20%;"> </div>
-            </div>
-            <div class="row">
-                <div class="twelve columns" style="margin-top: 5%; margin-bottom: 25%;">
-                    <h4 id="yourCart">Your Cart</h4>
-                    {% if total > 0 %}
-                    <table class="u-full-width">
-                        <thead>
-                            <tr>
-                                <th>Username</th>
-                                <th>Comment Karma</th>
-                                <th>Link Karma</th>
-                                <th>Created</th>
-                                <th>Price</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {% for user in cart %}
-                            <tr>
-                                <td>{{ user.name[:3] + "............." + user.name[-3:] }}</td>
-                                <td>{{ user.commentKarma }}</td>
-                                <td>{{ user.linkKarma }}</td>
-                                <td>{{ user.dateCreated }}</td>
-                                <td>${{ user.cost }}.00</td>
-                                <td>
-                                    <form method="post" action="/">
-                                        <input type="hidden" value="{{ user.name }}" name="Username">
-                                        <input type="submit" value="Remove" name="Remove">
-                                    </form>
-                                </td>
-                            </tr>
-                            {% endfor %}
-                        </tbody>
-                    </table>
-                    <p>Total Cost: ${{ total }}.00 USD</p>
-                    <form action="/charge" method="post" id="payment-form">
-                      <div class="form-row">
-                        <label for="buyer-email-address">
-                            Your email: 
-                        </label>
-                        <input name="EmailAddress" class="u-full-width" type="email" placeholder="your-email@mailbox.com" id="buyer-email-address">
-                        <label for="card-element">
-                          Credit or debit card
-                        </label>
-                        <div id="card-element">
-                          <!-- A Stripe Element will be inserted here. -->
-                        </div>
-
-                        <!-- Used to display Element errors. -->
-                        <div id="card-errors" role="alert"></div>
-                      </div>
-
-                      <button>Submit Payment</button>
-                    </form>
-                    <br>
-                    {% else %}
-                    <p>You currently have no items in your cart.</p>
-                    {% endif %}
-                    <button class="faqButton">Frequently Asked Questions</button>
-                </div>
-            </div>
-            <div class="row">
-                <div id="faq" style="padding-bottom: 10%;"> </div>
-            </div>
-            <div class="row">
-                <div class="one-half column" style="margin-top: 5%; margin-bottom: 25%;">
-                    <h4>Frequently Asked Questions</h4>
-                    <div style="height: 25px"></div>
-                    <h6 style="font-size: 20px"><em>How long will it take to get my account?</em></h6>
-                    <p>For your convenience, your account(s) will be instantly delivered after the purchase.</p>
-                    <h6 style="font-size: 20px"><em>What if I am unsatisfied?</em></h6>
-                    <p>At <strong>thefrontpagestore.com</strong>, we offer a satisfaction guarantee. We will refund your purchase and put you in touch with our customer support.</p>
-                    <h6 style="font-size: 20px"><em>Is bulk-pricing available? </em></h6>
-                    <p>For more information on bulk-pricing, please contact us through our contact form.</p>
-                    <h6 style="font-size: 20px"><em>How long do you take to respond? </em></h6>
-                    <p><strong>thefrontpagestore.com</strong> will respond within 24 hours.</p>
-                    <button id="contactUsButton">Contact Us</button>
-                </div>
-            </div>
-            <div class="row">
-                <div id="contactUs" style="padding-bottom: 10%;"> </div>
-            </div>
-            <div class="row">
-                <div class="twelve columns" style="margin-top: 5%; margin-bottom: 25%;">
-                    <h4>Get in touch</h4>
-                    <form method="post" action="/contact">
-                        <label for="exampleEmailInput">Your email</label>
-                        <input name="EmailAddress" class="u-full-width" type="email" placeholder="your-email@mailbox.com" id="exampleEmailInput">
-                        <label for="exampleMessage">Message</label>
-                        <textarea name="EmailMessage" class="u-full-width" placeholder="…" id="exampleMessage"></textarea>
-                        <input name="Send" type="submit" value="Submit">
-                    </form>
-                </div>
-            </div>
+                <img style="width: 60%;" src="{{ url_for('static', filename='spaceship.jpg') }}">
+            </div>       
         </div>
         <!-- End Document
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
 </body>
 <script src="{{ url_for('static',filename='script.js') }}"></script>
-
 </html>

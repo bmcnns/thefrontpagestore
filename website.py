@@ -42,7 +42,11 @@ users = []
 cart = []
 totalCost = 0
 
-@app.route('/', methods=['GET', 'POST'])
+@app.route('/')
+def home():
+	return render_template('index.html')
+
+@app.route('/accounts', methods=['GET', 'POST'])
 def load():
 	global totalCost
 
@@ -88,9 +92,9 @@ def load():
 		elif request.form.get('Checkout') == 'Checkout':
 			charge();
 
-		return render_template('index.html', users=users, cart=cart,total=totalCost)
+		return render_template('accounts.html', users=users, cart=cart,total=totalCost)
 	else:
-		return render_template('index.html', users=users, cart=cart,total=totalCost)
+		return render_template('accounts.html', users=users, cart=cart,total=totalCost)
 
 @app.route('/charge', methods=['POST'])
 def charge():
@@ -145,6 +149,24 @@ def charge():
 		conn.close()
 
 	return render_template('payment.html', accounts=accountString)
+
+@app.route('/faq', methods=['GET'])
+def faq():
+	return render_template('faq.html')
+
+@app.route('/contact', methods=['GET'])
+def contact_view():
+	return render_template('contact.html')
+
+@app.route('/cart', methods=['GET'])
+def cartView():
+	global totalCost
+	global cart
+	return render_template('cart.html', total=totalCost, cart=cart)
+
+@app.route('/accounts', methods=['GET'])
+def accounts():
+	return render_template('accounts.html', users=users)
 
 @app.route('/contact', methods=['POST'])
 def contact():
