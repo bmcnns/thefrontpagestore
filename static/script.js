@@ -1,30 +1,3 @@
-document.getElementById("checkoutButton").onclick = function() {
-	document.querySelector('#yourCart').scrollIntoView({ 
-  		behavior: 'smooth' 
-	});
-}
-
-document.getElementById("contactUsButton").onclick = function() {
-	document.querySelector('#contactUs').scrollIntoView({ 
-  		behavior: 'smooth' 
-	});
-}
-
-document.getElementById("accountsButton").onclick = function() {
-	document.querySelector('#accounts').scrollIntoView({ 
-  		behavior: 'smooth' 
-	});
-}
-
-for (var i = 0; i < document.getElementsByClassName("faqButton").length; i++)
-{
-	document.getElementsByClassName("faqButton")[i].onclick = function() {
-		document.querySelector('#faq').scrollIntoView({ 
-  			behavior: 'smooth' 
-		});
-	}
-}
-
 var stripe = Stripe('pk_live_IdCIf0j5kRP6meo3Re4jkaRI00NEPDM26g');
 var elements = stripe.elements();
 
