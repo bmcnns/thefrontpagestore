@@ -1,59 +1,41 @@
-<!DOCTYPE html>
+<!DOCTYPE HTML>
+<!--
+    Spatial by TEMPLATED
+    templated.co @templatedco
+    Released for free under the Creative Commons Attribution 3.0 license (templated.co/license)
+-->
 <html lang="en">
+    <head>
+        <title>Your Cart - TheFrontpageStore.com</title>
+        <meta description="Checkout and buy your reddit accounts with TheFrontpageStore.com" />
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="stylesheet" href="{{ url_for('static',filename='main.css') }}" />
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+        <script src="https://js.stripe.com/v3/"></script>
+    </head>
+    <body>
 
-<head>
-    <!-- Basic Page Needs
-  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-    <meta charset="utf-8">
-    <title>The Frontpage Store - Reddit Accounts, Reddit, Reddit Karma</title>
-    <meta name="author" content="Bryce MacInnis">
-    
-    <meta name="description" content="Buy aged, high reddit karma reddit accounts with instant delivery and a satisfaction guarantee." />
-    <!-- Mobile Specific Metas
-  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- FONT
-  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-    <link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">
-    <!-- CSS
-  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-    <link rel="stylesheet" href="{{ url_for('static',filename='normalize.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static',filename='skeleton.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static',filename='custom.css') }}">
-    <!-- Favicon
-  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-    <link rel="icon" type="image/png" href="{{ url_for('static', filename='favicon.png') }}">
-    <!-- JQuery -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
-    <script src="https://js.stripe.com/v3/"></script>
-</head>
+        <!-- Header -->
+            <header id="header">
+                <h1>The<strong><a href="/">Frontpage</a></strong>Store.com</h1>
+                <nav id="nav">
+                    <ul>
+                        <li><a href="/">Home</a></li>
+                        <li><a href="{{ url_for('load') }}">Accounts</a></li>
+                        <li><a href="{{ url_for('cartView') }}">Cart</a></li>
+                        <li><a href="{{ url_for('faq') }}">FAQ</a></li>
+                        <li><a href="{{ url_for('contact') }}">Contact</a></li>
+                    </ul>
+                </nav>
+            </header>
 
-<body>
-    <!-- Primary Page Layout
-  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-   <nav>
-        <ul>
-            <li>
-                <a href="/contact">Contact</a>
-            </li>
-            <li>
-                <a href="/faq">FAQ</a>
-            </li>
-            <li>
-                <a href="/cart">Cart</a>
-            </li>
-            <li>
-                <a href="/accounts">Accounts</a>
-            </li>
-            <li>   
-                <a href="/">Home</a>
-            </li>
-        </ul>
-    </nav>
-    <div class="container">
-        <div class="row">
-                <div class="twelve columns" style="margin-top: 15%; margin-bottom: 25%;">
-                    <h4 id="yourCart">Your Cart</h4>
+            <a href="#menu" class="navPanelToggle"><span class="fa fa-bars"></span></a>
+
+        <!-- Main -->
+            <section id="main" class="wrapper">
+                <div class="container">
+                    <h2 id="yourCart">Your Cart</h2>
                     {% if total > 0 %}
                     <table class="u-full-width">
                         <thead>
@@ -90,6 +72,7 @@
                             Your email: 
                         </label>
                         <input name="EmailAddress" class="u-full-width" type="email" placeholder="your-email@mailbox.com" id="buyer-email-address">
+                        <br>
                         <label for="card-element">
                           Credit or debit card
                         </label>
@@ -100,16 +83,32 @@
                         <!-- Used to display Element errors. -->
                         <div id="card-errors" role="alert"></div>
                       </div>
-
+                     <br>
                       <button>Submit Payment</button>
                     </form>
                     <br>
                     {% else %}
                         <p>You currently have no reddit accounts in your cart.</p>
                     {% endif %}
+
                 </div>
-            </div>
-    </div>
-</body>
-<script src="{{ url_for('static', filename='script.js') }}"></script>
+            </section>
+
+        <!-- Footer -->
+            <footer id="footer">
+                <div class="container">
+                    <ul class="copyright">
+                        <li>&copy; thefrontpagestore.com 2019-2020</li>
+                    </ul>
+                </div>
+            </footer>
+
+        <!-- Scripts -->
+            <script src="{{ url_for('static',filename='jquery.min.js') }}s"></script>
+            <script src="{{ url_for('static',filename='skel.min.js') }}"></script>
+            <script src="{{ url_for('static',filename='util.js') }}"></script>
+            <script src="{{ url_for('static',filename='main.js') }}"></script>
+
+    </body>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
 </html>

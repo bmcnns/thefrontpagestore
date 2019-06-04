@@ -168,13 +168,6 @@ def cartView():
 	global cart
 	return render_template('cart.html', total=totalCost, users=users, cart=cart)
 
-@app.route('/accounts', methods=['GET','POST'])
-def accounts():
-	if request.method == 'POST':
-		return render_template('cart.html', total=totalCost, cart=cart, users=users)
-
-	return render_template('accounts.html',total=totalCost, cart=cart, users=users)
-
 @app.route('/contact', methods=['POST'])
 def contact():
 	if request.form.get('Send') == 'Submit':

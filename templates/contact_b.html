@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Basic Page Needs
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+    <meta charset="utf-8">
+    <title>The Frontpage Store - Reddit Accounts, Reddit, Reddit Karma</title>
+    <meta name="author" content="Bryce MacInnis">
+    <meta name="description" content="Buy aged, high reddit karma reddit accounts with instant delivery and a satisfaction guarantee." />
+    <!-- Mobile Specific Metas
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- FONT
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+    <link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">
+    <!-- CSS
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+    <link rel="stylesheet" href="{{ url_for('static',filename='normalize.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='skeleton.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='custom.css') }}">
+    <!-- Favicon
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='favicon.png') }}">
+    <!-- JQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+    <script src="https://js.stripe.com/v3/"></script>
+</head>
+
+<body>
+    <!-- Primary Page Layout
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+   <nav>
+        <ul>
+            <li>
+                <a href="/contact">Contact</a>
+            </li>
+            <li>
+                <a href="/faq">FAQ</a>
+            </li>
+            <li>
+                <a href="/cart">Cart</a>
+            </li>
+            <li>
+                <a href="/accounts">Accounts</a>
+            </li>
+            <li>   
+                <a href="/">Home</a>
+            </li>
+        </ul>
+    </nav>
+    <div class="container">
+        
+        <div class="row">
+                <div class="twelve columns" style="margin-top: 15%; margin-bottom: 25%;">
+                    <h2>Get in touch</h2>
+                    <form method="post" action="/contact">
+                        <label for="exampleEmailInput">Your email</label>
+                        <input name="EmailAddress" class="u-full-width" type="email" placeholder="your-email@mailbox.com" id="exampleEmailInput">
+                        <label for="exampleMessage">Message</label>
+                        <textarea name="EmailMessage" class="u-full-width" placeholder="…" id="exampleMessage"></textarea>
+                        <br>
+                        <input name="Send" type="submit" value="Submit">
+                    </form>
+                </div>
+            </div>
+        </div>
+</body>
+
+</html>

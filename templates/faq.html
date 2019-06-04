@@ -1,69 +1,68 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE HTML>
+<!--
+	Spatial by TEMPLATED
+	templated.co @templatedco
+	Released for free under the Creative Commons Attribution 3.0 license (templated.co/license)
+-->
+<html>
+	<head>
+		<title>FAQ - TheFrontpageStore.com</title>
+		<meta description="Frequently Asked Questions for TheFrontpageStore.com your source for reddit accounts." />
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}" />
+	</head>
+	<body>
 
-<head>
-    <!-- Basic Page Needs
-  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-    <meta charset="utf-8">
-    <title>The Frontpage Store - Reddit Accounts, Reddit, Reddit Karma</title>
-    <meta name="author" content="Bryce MacInnis">
-    <meta name="description" content="Buy aged, high reddit karma reddit accounts with instant delivery and a satisfaction guarantee." />
-    <!-- Mobile Specific Metas
-  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- FONT
-  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-    <link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">
-    <!-- CSS
-  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-    <link rel="stylesheet" href="{{ url_for('static',filename='normalize.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static',filename='skeleton.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static',filename='custom.css') }}">
-    <!-- Favicon
-  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-    <link rel="icon" type="image/png" href="{{ url_for('static', filename='favicon.png') }}">
-    <!-- JQuery -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
-    <script src="https://js.stripe.com/v3/"></script>
-</head>
+		<!-- Header -->
+			<header id="header">
+				<h1>The<strong><a href="/">Frontpage</a></strong>Store.com</h1>
+				
+				<nav id="nav">
+					<ul>
+						<li><a href="/">Home</a></li>
+						<li><a href="{{ url_for('load') }}">Accounts</a></li>
+						<li><a href="{{ url_for('cartView') }}">Cart</a></li>
+						<li><a href="{{ url_for('faq') }}">FAQ</a></li>
+						<li><a href="{{ url_for('contact') }}">Contact</a></li>
+					</ul>
+				</nav>
+            	
+			</header>
 
-<body>
-    <!-- Primary Page Layout
-  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-   <nav>
-        <ul>
-            <li>
-                <a href="/contact">Contact</a>
-            </li>
-            <li>
-                <a href="/faq">FAQ</a>
-            </li>
-            <li>
-                <a href="/cart">Cart</a>
-            </li>
-            <li>
-                <a href="/accounts">Accounts</a>
-            </li>
-            <li>   
-                <a href="/">Home</a>
-            </li>
-        </ul>
-    </nav>
-    <div class="container">
-      <div class="row">
-            <div class="one-half column" style="margin-top: 10%; margin-bottom: 25%;">
-                <h4>Frequently Asked Questions</h4>
-                <div style="height: 25px"></div>
-                <h6 style="font-size: 20px"><em>How long will it take to get my account?</em></h6>
-                <p>For your convenience, your reddit accounts will be instantly delivered after the purchase.</p>
-                <h6 style="font-size: 20px"><em>What if I am unsatisfied?</em></h6>
-                <p>At thefrontpagestore.com, we offer a satisfaction guarantee. We offer the best reddit accounts with high reddit karma. We will refund your purchase and put you in touch with our customer support.</p>
-                <h6 style="font-size: 20px"><em>Is bulk-pricing available? </em></h6>
-                <p>For more information on bulk-pricing reddit accounts, please contact us through our contact form.</p>
-                <h6 style="font-size: 20px"><em>How long do you take to respond? </em></h6>
-                <p>thefrontpagestore.com will respond within 24 hours.</p>
-            </div>
-        </div>
-</body>
+			<a href="#menu" class="navPanelToggle"><span class="fa fa-bars"></span></a>
 
+		<!-- Main -->
+			<section class="main">
+
+				<div class="container">
+					<br>
+					<h2>Frequently Asked Questions</h2>
+	                <h5><em>How long will it take to get my account?</em></h6>
+	                <p>For your convenience, your reddit accounts will be instantly delivered after the purchase.</p>
+	                <h5><em>What if I am unsatisfied?</em></h6>
+	                <p>At thefrontpagestore.com, we offer a satisfaction guarantee. We offer the best reddit accounts with high reddit karma. We will refund your purchase and put you in touch with our customer support.</p>
+	                <h5><em>Is bulk-pricing available? </em></h6>
+	                <p>For more information on bulk-pricing reddit accounts, please contact us through our contact form.</p>
+	                <h5><em>How long do you take to respond? </em></h6>
+	                <p>thefrontpagestore.com will respond within 24 hours.</p>
+	            </div>
+			</section>
+		<!-- Footer -->
+			<!-- Footer -->
+			<footer id="footer">
+				<div class="container">
+					<ul class="copyright">
+						<li>&copy; thefrontpagestore.com 2019-2020</li>
+					</ul>
+				</div>
+			</footer>
+
+		<!-- Scripts -->
+			<script src="{{ url_for('static', filename='jquery.min.js') }}"></script>
+			<script src="{{ url_for('static', filename='skel.min.js') }}"></script>
+			<script src="{{ url_for('static', filename='util.js') }}"></script>
+			<script src="{{ url_for('static', filename='main.js') }}"></script>
+
+	</body>
 </html>
