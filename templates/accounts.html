@@ -44,10 +44,10 @@
 			{% for user in users %}
 			<section class="col">
 				<h3>{{ user.name[:3] + "*********************" + user.name[-3:] }}</h3>
-				<p>Link Karma: {{ user.linkKarma}}<br>
-					Comment Karma: {{ user.commentKarma }}<br>
+				<p>Link Karma: 1<br>
+					Comment Karma: 1500<br>
 					Date Created: {{ user.dateCreated }}<br>
-					Cost: ${{ user.cost }}.00 USD
+					Cost: $10.00 USD
 				</p>
 				<form method="post" action="/accounts">
 					<input type="hidden" value="{{ user.name }}" name="Username">
