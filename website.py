@@ -10,7 +10,7 @@ app = Flask(__name__)
 app.config['MAIL_SERVER'] = 'smtp.gmail.com'
 app.config['MAIL_PORT'] = 465
 app.config['MAIL_USERNAME'] = 'thefrontpagestore@gmail.com'
-app.config['MAIL_PASSWORD'] = 'Alfismo249_'
+app.config['MAIL_PASSWORD']
 app.config['MAIL_USE_TLS'] = False
 app.config['MAIL_USE_SSL'] = True
 mail = Mail(app)
@@ -102,7 +102,7 @@ def load():
 
 @app.route('/charge', methods=['POST'])
 def charge():
-	stripe.api_key = 'sk_live_ArRWnSubtTtdTcXyCpEhFcu2002YbfhXh9'
+	stripe.api_key = [REDACTED]
 
 	# Token is created using Checkout or Elements!
 	# Get the payment token ID submitted by the form:
